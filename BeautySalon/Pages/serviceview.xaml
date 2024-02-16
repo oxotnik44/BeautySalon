@@ -1,0 +1,83 @@
+﻿<Window x:Class="BeautySalon.Pages.serviceview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeautySalon.Pages"
+        mc:Ignorable="d"
+          Title="Посещения клиентов" Height="450" Width="800">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="228*"/>
+            <ColumnDefinition Width="502*"/>
+            <ColumnDefinition Width="29*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="170*"/>
+            <RowDefinition Height="188*"/>
+            <RowDefinition Height="41*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
+            <TextBlock Text="Изображение клиента:"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Image x:Name="AgentImage" Width="100" Height="100"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <TextBlock x:Name="FirstName"/>
+            <TextBlock x:Name="LastName"/>
+            <TextBlock x:Name="MiddleName"/>
+            <TextBlock x:Name="CountVisit"/>
+
+
+        </StackPanel>
+        <ListView Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" x:Name="DataView" d:ItemsSource="{d:SampleData ItemCount=3}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300*"/>
+                                <ColumnDefinition Width="400*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Image Source="{Binding ImgPath}" Width="100" Height="100"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="5" >
+                                <TextBlock Text="{Binding Name}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Sum}" TextDecorations="{Binding Decorate}"/>
+                                    <TextBlock Text="{Binding NewSum}"/>
+                                    <TextBlock Text="{Binding Time}"/>
+                                </StackPanel>
+
+                                <TextBlock Text="{Binding Discount}"/>
+                                <TextBlock Text=""/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Редактировать" Margin="5" Name="EditService" Click="EditService_Click" Background="{x:Null}"/>
+
+                                    <Button Content="Удалить" Margin="5" x:Name="DeleteService" Click="DeleteService_Click" Background="{x:Null}"/>
+                                </StackPanel>
+
+
+
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+    </Grid>
+</Window>
